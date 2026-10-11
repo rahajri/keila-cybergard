@@ -13,7 +13,7 @@
         view_template(@conn),
         :title,
         gettext("Open Source Newsletter Tool")
-      ) <> " · Keila"}
+      ) <> " · Cybergard AI"}
     </title>
     <meta property="og:image" content={Routes.static_url(@conn, "/images/og_image.png")} />
     <meta property="og:description" content="Open Source Newsletters" />
@@ -43,5 +43,8 @@
     <main>
       {@inner_content}
     </main>
+    <footer class="mt-auto pt-6 text-center text-xs">
+      <a class="underline" href="https://github.com/rahajri/keila-cybergard/tree/v0.30.3-cybergard.1" rel="noopener" data-cybergard-source>Source code</a>
+    </footer>
   </body>
 </html>

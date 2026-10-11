@@ -1,3 +1,72 @@
+# Keila — édition Cybergard AI (`v0.30.3-cybergard.1`)
+
+> **Ce dépôt est le code source correspondant (« Corresponding Source », AGPL-3.0 §13)
+> de l'instance Keila exploitée par Cybergard AI** (`newsletter.cybergard.fr`).
+> Il s'agit de [Keila](https://github.com/pentacent/keila), logiciel libre sous
+> licence **GNU AGPL-3.0** (voir [`LICENSE.md`](LICENSE.md)), avec un branding
+> Cybergard minimal. Aucune autre modification fonctionnelle.
+
+## Version upstream
+
+| | |
+|---|---|
+| Projet | [pentacent/keila](https://github.com/pentacent/keila) |
+| Version | **v0.30.3** (2026-09-06) |
+| Commit upstream | [`bccb0a8e612a6faacf9bc7180e5aa9126042cd6c`](https://github.com/pentacent/keila/commit/bccb0a8e612a6faacf9bc7180e5aa9126042cd6c) |
+| Tag de ce dépôt | **`v0.30.3-cybergard.1`** = source exacte de l'image `ghcr.io/rahajri/keila:0.30.3-cybergard.1` |
+
+L'historique Git de Keila jusqu'à `v0.30.3` est conservé ; les modifications
+Cybergard forment un commit unique au-dessus.
+
+## Modifications Cybergard (2026-10-12)
+
+Appliquées par [`cybergard/apply-branding.sh`](cybergard/apply-branding.sh) :
+
+| Fichier | Modification |
+|---|---|
+| `lib/keila_web/templates/layout/root.html.heex` | titre de page `… · Keila` → `… · Cybergard AI` |
+| `lib/keila_web/templates/public_form_layout/root.html.heex` | titre `… · Keila` → `… · Cybergard AI` ; ajout d'un lien « Source code » sous les formulaires publics |
+| `lib/keila_web/templates/layout/_menu.html.heex` | libellé « Keila » du menu (desktop + mobile) → « Cybergard AI » |
+| `lib/keila_web/templates/layout/_footer.html.heex` | ajout d'un lien « Source code » (colonne Community) |
+| `cybergard/` | scripts de build/vérification, Dockerfile (base épinglée), version |
+| `README.md` | cette section |
+
+Les liens « Source code » pointent vers ce tag exact :
+`https://github.com/rahajri/keila-cybergard/tree/v0.30.3-cybergard.1`.
+
+Aucun secret, fichier `.env`, donnée utilisateur ni code Cybergard sans
+rapport avec Keila n'est inclus.
+
+## Reconstruire l'image déployée
+
+Prérequis : Docker (BuildKit).
+
+```bash
+git clone --branch v0.30.3-cybergard.1 https://github.com/rahajri/keila-cybergard.git
+cd keila-cybergard
+bash cybergard/build.sh                                   # → keila-cybergard:0.30.3-cybergard.1
+bash cybergard/smoke-test.sh keila-cybergard:0.30.3-cybergard.1   # PostgreSQL 15 + healthcheck + branding
+```
+
+- Image de base épinglée par digest : `cybergard/VERSION.env` (`ELIXIR_IMAGE`).
+- `cybergard/Dockerfile` = `ops/Dockerfile` upstream + base épinglée + labels OCI.
+
+## Vérifier la correspondance avec Keila officiel
+
+```bash
+bash cybergard/verify-against-upstream.sh
+```
+
+Récupère `pentacent/keila` au commit épinglé, applique `apply-branding.sh` et
+compare l'arbre avec ce dépôt (hors `.git`, `cybergard/`, `README.md`) :
+identique octet pour octet.
+
+---
+
+*README original de Keila ci-dessous.*
+
+---
+
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pentacent/keila/ci.yml?label=build&style=flat-square&branch=main)
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/pentacent/keila?color=blue&label=docker%20image&style=flat-square)](https://hub.docker.com/r/pentacent/keila/tags)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/pentacent/keila?label=latest%20version&style=flat-square)](https://github.com/pentacent/keila/releases)
